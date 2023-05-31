@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/admin_head %>
+  <% include notification_component/index_css %> 
+</head>
+<body>
+  <% include partials/header_component %>
+
+  <div id="editorsection" class="container" >
+      <div class="row">
+        <h2>Edit Page<h2>
+      </div>
+      <div class="row">
+          <h6 style="color: #fe414d;">
+              <i>
+                  <% if(showDeviceWarning) { %>
+                    NOTE : For best experience please use the customize option on Desktop.
+                  <% } %>  
+                
+              </i>
+            </h6>
+      </div>
+
+      <div class="card-body">
+          <form method="post">
+              <textarea id="full-featured-non-premium">
+                <%= content %>
+              </textarea>
+          </form>
+      </div>
+  </div>
+  <div class="space">
+  </div>
+
+  </body>
+  <% include ./partials/editor_scripts %>
+
+</html>

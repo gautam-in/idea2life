@@ -1,0 +1,33 @@
+version: "3"
+services:
+  ai:
+    build: ./ai/
+    ports:
+      - "5000:5000"
+    volumes:
+      # mount python ai code directory on docker container
+      - ./ai/:/home/ai/
+
+      # Exclude mount of lib directory as it is static compiled c++ code
+      - /home/ai/lib/
+
+      # mount idea2life and doc directory for  optionally building documentation
+      - ./idea2life/:/home/idea2life/
+      - ./docs/:/home/docs/
+    environment:
+      FLASK_DEBUG: true
+    platform: "linux/amd64"
+    expose:
+      - 5000
+
+  idea2life:
+    build: ./idea2life/
+    ports:
+      - "1813:1813"
+    volumes:
+      - ./idea2life/:/usr/src/app/
+
+      # Exclude mount node_modules directory
+      - /usr/src/app/node_modules/
+    environment:
+      FLASK_ENV: development
